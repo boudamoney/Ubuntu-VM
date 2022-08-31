@@ -20,6 +20,14 @@ jobs:
       # Runs a single command using the runners shell
       - name: Building VM
         run: |
-             wget -O xfce4.sh https://bit.ly/akuhnetxrdpcolab 
-             chmod +x xfce4.sh 
-             ./xfce4.sh
+             wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+             unzip ngrok.zip
+             ./ngrok authtoken $
+             ./ngrok tcp --region $ 3389
+             sudo apt install -y xrdp
+             sudo apt install xfce4 -y
+             sudo apt-get install xfce4 xfce4-terminal -y
+             sudo sed -i.bak '/fi/a xfce4-session \n' /etc/xrdp/startwm.sh
+             sudo service xrdp start
+             curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
+             sleep 43210
