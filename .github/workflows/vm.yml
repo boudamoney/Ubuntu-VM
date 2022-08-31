@@ -22,8 +22,8 @@ jobs:
         run: |
              wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
              unzip ngrok.zip
-             ./ngrok authtoken $
-             ./ngrok tcp --region $ 3389
+             ./ngrok authtoken 27o5HnbI46zt7YNm1Y9MUWTdWt7_2SQBW6UHPToMgmxXSA6DX
+             ./ngrok tcp --region us 3389
              sudo apt install -y xrdp
              sudo apt install xfce4 -y
              sudo apt-get install xfce4 xfce4-terminal -y
