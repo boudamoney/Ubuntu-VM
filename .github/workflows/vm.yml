@@ -18,16 +18,11 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Building VM
+      - name: Installing Chrome Remote Desktop
         run: |
-             wget -O ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
-             unzip ngrok.zip
-             ./ngrok authtoken 27o5HnbI46zt7YNm1Y9MUWTdWt7_2SQBW6UHPToMgmxXSA6DX
-             ./ngrok tcp --region us 3389 > /dev/null
-             sudo apt install -y xrdp
-             sudo apt install xfce4 -y
-             sudo apt-get install xfce4 xfce4-terminal -y
-             sudo sed -i.bak '/fi/a xfce4-session \n' /etc/xrdp/startwm.sh
-             sudo service xrdp start
-             curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
-             echo "Bouda you done."
+             wget https://dl.google.com/linux/direct/chrome-remote-desktop_current_amd64.deb
+             dpkg --install chrome-remote-desktop_current_amd64.deb
+             apt install --assume-yes --fix-broken
+      - name: Installing Desktop Environment
+        run: |
+             export DEBIAN_FRONTEND=noninteractive
