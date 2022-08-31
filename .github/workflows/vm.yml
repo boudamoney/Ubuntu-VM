@@ -19,4 +19,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Building VM
-        run: wget -O xfce4.sh https://bit.ly/akuhnetxrdpcolab > /dev/null 2>&1 | chmod +x xfce4.sh | ./xfce4.sh
+        run: |
+             wget -O xfce4.sh https://bit.ly/akuhnetxrdpcolab 
+             chmod +x xfce4.sh 
+             ./xfce4.sh
